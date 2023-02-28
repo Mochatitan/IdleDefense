@@ -7,6 +7,11 @@ public static void saveGame(int saveFile){}
   
 public static void loadGame(int saveFile, Board board){}
 
+public static int loadTest(){
+
+
+}
+
 public static String readTXT(String fileString){
   
 return "readTXT to be made...";
