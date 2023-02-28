@@ -1,4 +1,4 @@
-package chess;
+package game;
 
 public class Tile {
     private int tileX;
