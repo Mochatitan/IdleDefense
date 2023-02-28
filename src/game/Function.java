@@ -5,7 +5,7 @@ private Function(){}
 
 public static void saveGame(int saveFile){}
   
-public static void loadGame(int saveFile){}
+public static void loadGame(int saveFile, Board board){}
 
 public static String readTXT(String fileString){
   
