@@ -1,0 +1,29 @@
+{
+    "money": 0,
+    "saveName": "Smith",
+    "age": 25,
+    "towers": {
+"upgrades": [
+        {
+            "tower": "cannon",
+            "upgrade: 0
+        },
+        {
+            "tower": "turret",
+            "upgrade": 0
+        }
+],
+      "placedTowers": [
+        {
+          "tower": "cannon",
+          "locationx":4,
+          "locationy":3
+        },
+        {
+          "tower": "turret",
+          "locationx":4,
+          "locationy":6
+        }
+        ]
+}
+}
