@@ -42,7 +42,11 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
     {
         // Keep track of the Game object that created this panel.
         //   That way, we can call methods in the game object when needed.
-    	
+    	// set the game board size
+        this.setPreferredSize(new Dimension(TILE_SIZE * COLUMNS, TILE_SIZE * ROWS));
+        // set the game board background color
+        this.setBackground(new Color(232, 232, 232));
+	
     	this.addMouseListener(this); 			// Listen to our own mouse events.
     	this.addMouseMotionListener(this);		// Listen to mouse movements
         this.enclosingGame = enclosingGame;
