@@ -178,7 +178,7 @@ public class Game implements Runnable
         
     	// creates a new ImageLoader object and loads the background image
 		ImageLoader loader = ImageLoader.getLoader();
-        backdrop = loader.getImage("resources/stars.jpg");
+        backgroundImage = loader.getImage("resources/stars.jpg");
         
        
         // fill counters
@@ -304,23 +304,7 @@ public class Game implements Runnable
         if (state != GameState.DRAW)
             return;
         	
-        // Draw the background image.
-        g.drawImage(backdrop, 0, 0, null); 
-     
-        // Draw the path
-        g.setColor(new Color (0,76, 153));
-        int[] xPos = new int[]{0, 64, 118, 251, 298, 344, 396, 416, 437, 459, 460, 498, 542, 600, 600, 568, 535, 509, 490, 481, 456, 414, 345, 287, 227, 98, 0};
-        int[] yPos = new int[]{329, 316, 291, 189, 163, 154, 165, 186, 233, 344, 364, 415, 444, 461, 410, 396, 372, 331, 226, 195, 151, 117, 105, 117, 143, 244, 280};
-        g.fillPolygon(xPos, yPos, 27);
-        
-        // Draw planet 
-        g.setColor(new Color(65,105,225));
-        g.fillArc(550, 385, 100, 100, 90, 180);
-        g.setColor(Color.GREEN);
-        int[] xCor = new int[]{600, 588, 574, 566, 557, 557, 563, 572, 576, 584, 600};
-        int[] yCor = new int[]{459, 464, 462, 453, 454, 448, 438, 435, 422, 414, 415};
-        g.fillPolygon(xCor, yCor, 11);
-        
+      drawBackground(g);
         // Draw the line along the path.
         //line.drawLine(g);
         
@@ -332,9 +316,8 @@ public class Game implements Runnable
         for(Tower t: new LinkedList<Tower>(towers))
         	t.draw(g);
         	
-    	// draw all towers in list
-    	for(Effect s: new LinkedList<Effect>(effects))
-    		s.draw(g);
+    
+  
     	
         // draw menu bar
         g.setColor(Color.WHITE);
@@ -507,4 +490,23 @@ public class Game implements Runnable
     		newSun.setPosition(mouseLocation);
     	}	
     }
+    public void drawBackground(Graphics g){
+  // Draw the background image.
+        g.drawImage(backgroundImage, 0, 0, null); 
+     
+        // Draw the path
+        g.setColor(new Color (0,76, 153));
+        int[] xPos = new int[]{0, 64, 118, 251, 298, 344, 396, 416, 437, 459, 460, 498, 542, 600, 600, 568, 535, 509, 490, 481, 456, 414, 345, 287, 227, 98, 0};
+        int[] yPos = new int[]{329, 316, 291, 189, 163, 154, 165, 186, 233, 344, 364, 415, 444, 461, 410, 396, 372, 331, 226, 195, 151, 117, 105, 117, 143, 244, 280};
+        g.fillPolygon(xPos, yPos, 27);
+        
+        // Draw planet 
+        g.setColor(new Color(65,105,225));
+        g.fillArc(550, 385, 100, 100, 90, 180);
+        g.setColor(Color.GREEN);
+        int[] xCor = new int[]{600, 588, 574, 566, 557, 557, 563, 572, 576, 584, 600};
+        int[] yCor = new int[]{459, 464, 462, 453, 454, 448, 438, 435, 422, 414, 415};
+        g.fillPolygon(xCor, yCor, 11);
+        
+}
 }	
