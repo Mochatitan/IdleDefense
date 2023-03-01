@@ -58,8 +58,7 @@ public class Game implements Runnable
     }
     
     /* Object fields and methods */
-    private Image backdrop;				// background star image		
-    private PathPoints line;			// path coordinates
+    private Image backgroundImage;	                // background star image		
     
     private GamePanel gamePanel;		// gamePanel object 
     private GameState state;	   		// The current game state
@@ -67,28 +66,14 @@ public class Game implements Runnable
     private int frameCounter;			// keeps track of frame updates
     private long lastTime;				// keeps track of time
     
-    private boolean placingBlackHole;	// true if tower is being placed
-    private Tower newBlackHole; 		// variable to hold new tower objects
-    private double elapsedTime;			// time trackers
     
-    private boolean placingSun;			// true if tower is being placed
-    private Tower newSun; 				// variable to hold new tower objects
-    private boolean gameIsOver;			// indicates if game is lost
-    private boolean gameIsWon;			// indicates if game is won
-    
-    int livesCounter; 					// counter for lives left
-    int scoreCounter;					// points the user earns
-    int killsCounter;					// number of enemies destroyed
     
     /* create enemies */
     List<Enemy> enemies;				// list of enemy objects
     
     /* create towers */
     List<Tower> towers;					// list of tower objects
-    
-    /* create effects */
-    List<Effect> effects;				// list of effect objects
-    
+   
     // You will declare other variables here.  These variables will last for
     //   the lifetime of the game, so don't store temporary values or loop counters
     //   here.
@@ -186,7 +171,7 @@ public class Game implements Runnable
         // Create the JFrame and the JPanel
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        f.setTitle("Basil Vetas's Tower Defense Game");
+        f.setTitle("Idle Defense v0.1.2");
         f.setContentPane(gamePanel);
         f.pack();
         f.setVisible(true); 
@@ -195,16 +180,11 @@ public class Game implements Runnable
 		ImageLoader loader = ImageLoader.getLoader();
         backdrop = loader.getImage("resources/stars.jpg");
         
-        JOptionPane.showMessageDialog(null,  "Rules of the game:\n" +
-        		"1. Place towers on the map to stop enemies from reaching the Earth.\n" +
-        		"2. Black holes shoot star dust and are cheaper, Suns shoot sun spots and are faster.\n" +
-        		"3. You earn money for stopping enemies, but as the game progresses, new enemies attack.\n" +
-        		"4. If you stop 500 enemies you win, but if you lose 10 lives the game is over.");
-        
+       
         // fill counters
-        livesCounter = 10;		// gives the player 10 lives
-        scoreCounter = 200;		// give the user 500 points to begin
-        killsCounter = 0;		// begin with 0 kills
+        //livesCounter = 10;		// gives the player 10 lives
+        //scoreCounter = 200;		// give the user 500 points to begin
+        //killsCounter = 0;		// begin with 0 kills
         
         // Reset the frame counter and time 
         frameCounter = 0;
@@ -212,10 +192,11 @@ public class Game implements Runnable
         
         // Use the loader to build a scanner on the path data text file, then build the 
         // path points object from the data in the file.
-		ClassLoader myLoader = this.getClass().getClassLoader();
+	/*	ClassLoader myLoader = this.getClass().getClassLoader();
         InputStream pointStream = myLoader.getResourceAsStream("resources/path_1.txt");
         Scanner s = new Scanner (pointStream);
         line  = new PathPoints(s);
+	*/
 
         // Fill enemy list with new LinkedList
         enemies = new LinkedList<Enemy>();
@@ -223,20 +204,13 @@ public class Game implements Runnable
         // Fill tower list with new LinkedList
         towers = new LinkedList<Tower>();
         
-        // Fill effects list with new LinkedList
-        effects = new LinkedList<Effect>();
-        
+      
         // initialize
-        placingBlackHole = false;
-        newBlackHole = null;
-        
-        // initialize
-        placingSun = false;
-        newSun = null;
-        	
-        // initialize
-        gameIsOver = false;
-    	gameIsWon = false;
+        //placingBlackHole = false;
+        //newBlackHole = null;
+       
+       
+     
         
         // Change the game state to start the game.
         state = GameState.UPDATE;  // You could also enter the 'DRAW' state.
@@ -274,15 +248,10 @@ public class Game implements Runnable
     		
     	}
         // for each effect, interact in this game      
-    	for(Effect e: new LinkedList<Effect>(effects))
-    	{	
-    		e.interact(this, elapsedTime);
-    		if(e.isDone())
-    			effects.remove(e);	// add to list that has reached the end	
-    	}
+  
     	
     	// Advance each enemy on the path.
-    	for(Enemy e: new LinkedList<Enemy>(enemies))
+    	/*for(Enemy e: new LinkedList<Enemy>(enemies))
     	{	
     		e.advance();
      		if(e.getPosition().isAtTheEnd())
@@ -292,6 +261,7 @@ public class Game implements Runnable
     		}
 
     	}
+	*/
     	
         // Fill elements in an enemy list
         this.generateEnemies();
@@ -300,18 +270,18 @@ public class Game implements Runnable
     	frameCounter++;
     	
     	// Place towers if user chooses
-    	this.placeBlackHoles();
-    	this.placeSuns();
+    	//this.placeBlackHoles();
+    	//this.placeSuns();
     	
-    	if(livesCounter <= 0)
+    	/*if(livesCounter <= 0)
     	{	gameIsOver = true;
     		livesCounter = 0;
-    	}
+    	}*/
     	
-    	if(killsCounter >= 500)
+    	/*if(killsCounter >= 500)
     	{	gameIsWon = true;
     		killsCounter = 500;
-    	}
+    	}*/
     	
         // After we have updated the objects in the game, we need to
         //   redraw them.  Enter the 'DRAW' state.
