@@ -16,17 +16,20 @@ import java.awt.Color;
 public abstract class Tower {
 
     // instance variables
-    protected ArrayList<Upgrade> upgradeList;
-    protected int kills = 0;
+    abstract double damage;
+    abstract double range;
+    abstract double fireRate;
+    abstract ArrayList<Upgrade> upgradeList;
+    abstract String imageFile;
+
+    
     protected boolean isSelected = false;
     protected BufferedImage unscaledImage; // holds tower image
     protected Image image;
     protected Tile tile;
     protected double timeSinceLastFire;// time since last effect was fired
-    protected String imageFile;
-
-    public Tower(boolean white, String fileString, Tile initTile) {
-        this.setWhite(white);
+   
+    public Tower(String fileString, Tile initTile) {
         this.tile = initTile;
         loadImage(fileString);
     }
@@ -66,18 +69,17 @@ public abstract class Tower {
     public ArrayList<Upgrade> getUpgrades(){
         return upgradeList;
     }
-
-    public void setWhite(boolean white) {
-        this.white = white;
+    public void addUpgrade(Upgrade upgrade){
+        upgradeList.add(upgrade);
     }
 
-    public boolean isKilled() {
-        return this.killed;
-    }
+    
+    
 
-    public void setKilled(boolean killed) {
-        this.killed = killed;
-    }
+    
+       
+
+   
 
     public Tile getTile() {
         return this.tile;
@@ -91,16 +93,11 @@ public abstract class Tower {
         isSelected = false;
     }
 
-    private String getSideString(boolean isWhite) {
-        if (isWhite == true) {
-            return "white";
-        }
-        return "black";
-    }
+    
 
     public void move(Tile moveTile) {
         this.tile = moveTile;
     }
 
-    public abstract ArrayList<Tile> movableTiles(ArrayList<Tile> takenList);
+  
 }
