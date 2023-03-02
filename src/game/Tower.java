@@ -13,11 +13,11 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Color;
 
-public abstract class Piece {
+public abstract class Tower {
 
     // instance variables
-    private boolean killed = false;
-    private boolean white = false;
+    protected ArrayList<Upgrade> upgradeList;
+    protected int kills = 0;
     protected boolean isSelected = false;
     protected BufferedImage unscaledImage; // holds tower image
     protected Image image;
@@ -25,7 +25,7 @@ public abstract class Piece {
     protected double timeSinceLastFire;// time since last effect was fired
     protected String imageFile;
 
-    public Piece(boolean white, String fileString, Tile initTile) {
+    public Tower(boolean white, String fileString, Tile initTile) {
         this.setWhite(white);
         this.tile = initTile;
         loadImage(fileString);
@@ -63,8 +63,8 @@ public abstract class Piece {
         }
     }
 
-    public boolean isWhite() {
-        return this.white;
+    public ArrayList<Upgrade> getUpgrades(){
+        return upgradeList;
     }
 
     public void setWhite(boolean white) {
