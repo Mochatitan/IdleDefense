@@ -64,16 +64,14 @@ public class Game implements Runnable
     private GameState state;	   		// The current game state
     
     private int frameCounter;			// keeps track of frame updates
-    private long lastTime;				// keeps track of time
+    private long lastTime;                      // keeps track of time
     
+    public Tower[][] towerArray;
     
+    public ArrayList<Tower> towerList;
+    public ArrayList<Enemy> enemyList;
     
-    /* create enemies */
-    List<Enemy> enemies;				// list of enemy objects
-    
-    /* create towers */
-    List<Tower> towers;					// list of tower objects
-   
+
     // You will declare other variables here.  These variables will last for
     //   the lifetime of the game, so don't store temporary values or loop counters
     //   here.
