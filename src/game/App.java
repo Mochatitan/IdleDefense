@@ -2,6 +2,8 @@ package game;
 
 import javax.swing.*;
 
+enum GameState { SETUP, UPDATE, DRAW, WAIT, END }
+
 class App {
 
     public static void main(String[] args) {
